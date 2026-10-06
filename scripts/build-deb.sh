@@ -48,7 +48,8 @@ Description: Docker CLI adapter and Compose support for WSL containers
 CONTROL
 
 mkdir -p "$repo_root/dist"
-dpkg-deb --root-owner-group --build "$stage" "$repo_root/dist/wslc-docker_${version}_all.deb"
-sha256sum "$repo_root/dist/wslc-docker_${version}_all.deb" \
-    > "$repo_root/dist/wslc-docker_${version}_all.deb.sha256"
+package="$repo_root/dist/wslc-docker_${version}_all.deb"
+dpkg-deb --root-owner-group --build "$stage" "$package"
+(cd "$repo_root/dist" && sha256sum "wslc-docker_${version}_all.deb") \
+    > "$package.sha256"
 printf 'Built %s\n' "$repo_root/dist/wslc-docker_${version}_all.deb"
