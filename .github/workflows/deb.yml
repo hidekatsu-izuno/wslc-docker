@@ -1,0 +1,47 @@
+name: Test and build Debian package
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-package:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Install package build and test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes dpkg-dev python3-yaml python3-pytest
+      - name: Run adapter and vendored Compose tests
+        run: scripts/test.sh
+      - name: Build .deb
+        run: |
+          version="0.1.${GITHUB_RUN_NUMBER}"
+          if [[ "${GITHUB_REF_TYPE:-}" == "tag" ]]; then
+            version="${GITHUB_REF_NAME#v}"
+          fi
+          scripts/build-deb.sh "$version"
+      - name: Validate package metadata and payload
+        run: |
+          dpkg-deb --info dist/wslc-docker_*.deb
+          dpkg-deb --contents dist/wslc-docker_*.deb
+          dpkg-deb --extract dist/wslc-docker_*.deb /tmp/wslc-docker-package
+          test -x /tmp/wslc-docker-package/usr/lib/wslc-docker/bin/docker
+          test -x /tmp/wslc-docker-package/usr/lib/wslc-docker/bin/wslc-compose
+          PYTHONPATH=/tmp/wslc-docker-package/usr/lib/wslc-docker/vendor/wslc-compose/src \
+            python3 -c 'import wslc_compose; assert wslc_compose.__version__ == "0.2.1"'
+      - name: Upload .deb and checksum
+        uses: actions/upload-artifact@v4
+        with:
+          name: wslc-docker-deb-${{ github.ref_name }}
+          path: dist/wslc-docker_*.deb*
+          if-no-files-found: error
+          retention-days: 30

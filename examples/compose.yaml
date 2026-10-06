@@ -1,0 +1,6 @@
+name: wslc-example
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8088:80"

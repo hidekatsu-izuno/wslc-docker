@@ -1,0 +1,1432 @@
+{
+  "container attach": {
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "volume prune": {
+    "--all": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "-a": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "--filter": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "-f": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--force": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "registry login": {
+    "--password": {
+      "kind": "value",
+      "target": "--password"
+    },
+    "-p": {
+      "kind": "value",
+      "target": "--password"
+    },
+    "--password-stdin": {
+      "kind": "flag",
+      "target": "--password-stdin"
+    },
+    "--username": {
+      "kind": "value",
+      "target": "--username"
+    },
+    "-u": {
+      "kind": "value",
+      "target": "--username"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "registry logout": {
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container stop": {
+    "--signal": {
+      "kind": "value",
+      "target": "--signal"
+    },
+    "-s": {
+      "kind": "value",
+      "target": "--signal"
+    },
+    "--time": {
+      "kind": "value",
+      "target": "--time"
+    },
+    "-t": {
+      "kind": "value",
+      "target": "--time"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "network list": {
+    "--filter": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--no-trunc": {
+      "kind": "flag",
+      "target": "--no-trunc"
+    },
+    "--quiet": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "-q": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image build": {
+    "--build-arg": {
+      "kind": "value",
+      "target": "--build-arg"
+    },
+    "--pull": {
+      "kind": "flag",
+      "target": "--pull"
+    },
+    "--target": {
+      "kind": "value",
+      "target": "--target"
+    },
+    "--file": {
+      "kind": "value",
+      "target": "--file"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--file"
+    },
+    "--iidfile": {
+      "kind": "value",
+      "target": "--iidfile"
+    },
+    "--label": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "-l": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "--no-cache": {
+      "kind": "flag",
+      "target": "--no-cache"
+    },
+    "--output": {
+      "kind": "value",
+      "target": "--output"
+    },
+    "-o": {
+      "kind": "value",
+      "target": "--output"
+    },
+    "--progress": {
+      "kind": "value",
+      "target": "--progress"
+    },
+    "--secret": {
+      "kind": "value",
+      "target": "--secret"
+    },
+    "--tag": {
+      "kind": "value",
+      "target": "--tag"
+    },
+    "-t": {
+      "kind": "value",
+      "target": "--tag"
+    },
+    "--verbose": {
+      "kind": "flag",
+      "target": "--verbose"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container export": {
+    "--output": {
+      "kind": "value",
+      "target": "--output"
+    },
+    "-o": {
+      "kind": "value",
+      "target": "--output"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image push": {
+    "--all-tags": {
+      "kind": "flag",
+      "target": "--all-tags"
+    },
+    "-a": {
+      "kind": "flag",
+      "target": "--all-tags"
+    },
+    "--quiet": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "-q": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "network inspect": {
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image prune": {
+    "--all": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "-a": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "--filter": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "-f": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--force": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image import": {
+    "--no-trunc": {
+      "kind": "flag",
+      "target": "--no-trunc"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image tag": {
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "network prune": {
+    "--filter": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "-f": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--force": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "version": {
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container cp": {
+    "--archive": {
+      "kind": "flag",
+      "target": "--archive"
+    },
+    "-a": {
+      "kind": "flag",
+      "target": "--archive"
+    },
+    "--follow-link": {
+      "kind": "flag",
+      "target": "--follow-link"
+    },
+    "-L": {
+      "kind": "flag",
+      "target": "--follow-link"
+    },
+    "--quiet": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "-q": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "volume inspect": {
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container list": {
+    "--all": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "-a": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "--filter": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--last": {
+      "kind": "value",
+      "target": "--last"
+    },
+    "-n": {
+      "kind": "value",
+      "target": "--last"
+    },
+    "--latest": {
+      "kind": "flag",
+      "target": "--latest"
+    },
+    "-l": {
+      "kind": "flag",
+      "target": "--latest"
+    },
+    "--no-trunc": {
+      "kind": "flag",
+      "target": "--no-trunc"
+    },
+    "--quiet": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "-q": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "--size": {
+      "kind": "flag",
+      "target": "--size"
+    },
+    "-s": {
+      "kind": "flag",
+      "target": "--size"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container exec": {
+    "--detach": {
+      "kind": "flag",
+      "target": "--detach"
+    },
+    "-d": {
+      "kind": "flag",
+      "target": "--detach"
+    },
+    "--env": {
+      "kind": "value",
+      "target": "--env"
+    },
+    "-e": {
+      "kind": "value",
+      "target": "--env"
+    },
+    "--env-file": {
+      "kind": "value",
+      "target": "--env-file"
+    },
+    "--interactive": {
+      "kind": "flag",
+      "target": "--interactive"
+    },
+    "-i": {
+      "kind": "flag",
+      "target": "--interactive"
+    },
+    "--tty": {
+      "kind": "flag",
+      "target": "--tty"
+    },
+    "-t": {
+      "kind": "flag",
+      "target": "--tty"
+    },
+    "--user": {
+      "kind": "value",
+      "target": "--user"
+    },
+    "-u": {
+      "kind": "value",
+      "target": "--user"
+    },
+    "--workdir": {
+      "kind": "value",
+      "target": "--workdir"
+    },
+    "-w": {
+      "kind": "value",
+      "target": "--workdir"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container stats": {
+    "--all": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "-a": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--no-trunc": {
+      "kind": "flag",
+      "target": "--no-trunc"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container inspect": {
+    "--size": {
+      "kind": "flag",
+      "target": "--size"
+    },
+    "-s": {
+      "kind": "flag",
+      "target": "--size"
+    },
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "volume remove": {
+    "--force": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "-f": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container remove": {
+    "--force": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "-f": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--volumes": {
+      "kind": "flag",
+      "target": "--volumes"
+    },
+    "-v": {
+      "kind": "flag",
+      "target": "--volumes"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image pull": {
+    "--all-tags": {
+      "kind": "flag",
+      "target": "--all-tags"
+    },
+    "-a": {
+      "kind": "flag",
+      "target": "--all-tags"
+    },
+    "--quiet": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "-q": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "system events": {
+    "--since": {
+      "kind": "value",
+      "target": "--since"
+    },
+    "--until": {
+      "kind": "value",
+      "target": "--until"
+    },
+    "--filter": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "network remove": {
+    "--force": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "-f": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image list": {
+    "--all": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "-a": {
+      "kind": "flag",
+      "target": "--all"
+    },
+    "--digests": {
+      "kind": "flag",
+      "target": "--digests"
+    },
+    "--filter": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--no-trunc": {
+      "kind": "flag",
+      "target": "--no-trunc"
+    },
+    "--quiet": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "-q": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "--verbose": {
+      "kind": "flag",
+      "target": "--verbose"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container kill": {
+    "--signal": {
+      "kind": "value",
+      "target": "--signal"
+    },
+    "-s": {
+      "kind": "value",
+      "target": "--signal"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image remove": {
+    "--force": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "-f": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--no-prune": {
+      "kind": "flag",
+      "target": "--no-prune"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container logs": {
+    "--details": {
+      "kind": "flag",
+      "target": "--details"
+    },
+    "--follow": {
+      "kind": "flag",
+      "target": "--follow"
+    },
+    "-f": {
+      "kind": "flag",
+      "target": "--follow"
+    },
+    "--tail": {
+      "kind": "value",
+      "target": "--tail"
+    },
+    "-n": {
+      "kind": "value",
+      "target": "--tail"
+    },
+    "--timestamps": {
+      "kind": "flag",
+      "target": "--timestamps"
+    },
+    "-t": {
+      "kind": "flag",
+      "target": "--timestamps"
+    },
+    "--since": {
+      "kind": "value",
+      "target": "--since"
+    },
+    "--until": {
+      "kind": "value",
+      "target": "--until"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "volume create": {
+    "--driver": {
+      "kind": "value",
+      "target": "--driver"
+    },
+    "-d": {
+      "kind": "value",
+      "target": "--driver"
+    },
+    "--opt": {
+      "kind": "value",
+      "target": "--opt"
+    },
+    "-o": {
+      "kind": "value",
+      "target": "--opt"
+    },
+    "--label": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "-l": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "network create": {
+    "--driver": {
+      "kind": "value",
+      "target": "--driver"
+    },
+    "-d": {
+      "kind": "value",
+      "target": "--driver"
+    },
+    "--opt": {
+      "kind": "value",
+      "target": "--opt"
+    },
+    "-o": {
+      "kind": "value",
+      "target": "--opt"
+    },
+    "--label": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "-l": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "--gateway": {
+      "kind": "value",
+      "target": "--gateway"
+    },
+    "--internal": {
+      "kind": "flag",
+      "target": "--internal"
+    },
+    "--ip-range": {
+      "kind": "value",
+      "target": "--ip-range"
+    },
+    "--subnet": {
+      "kind": "value",
+      "target": "--subnet"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "volume list": {
+    "--filter": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--quiet": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "-q": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image load": {
+    "--input": {
+      "kind": "value",
+      "target": "--input"
+    },
+    "-i": {
+      "kind": "value",
+      "target": "--input"
+    },
+    "--quiet": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "-q": {
+      "kind": "flag",
+      "target": "--quiet"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "system info": {
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container run": {
+    "--cidfile": {
+      "kind": "value",
+      "target": "--cidfile"
+    },
+    "--cpus": {
+      "kind": "value",
+      "target": "--cpus"
+    },
+    "--detach": {
+      "kind": "flag",
+      "target": "--detach"
+    },
+    "-d": {
+      "kind": "flag",
+      "target": "--detach"
+    },
+    "--dns": {
+      "kind": "value",
+      "target": "--dns"
+    },
+    "--dns-option": {
+      "kind": "value",
+      "target": "--dns-option"
+    },
+    "--dns-search": {
+      "kind": "value",
+      "target": "--dns-search"
+    },
+    "--domainname": {
+      "kind": "value",
+      "target": "--domainname"
+    },
+    "--entrypoint": {
+      "kind": "value",
+      "target": "--entrypoint"
+    },
+    "--env": {
+      "kind": "value",
+      "target": "--env"
+    },
+    "-e": {
+      "kind": "value",
+      "target": "--env"
+    },
+    "--env-file": {
+      "kind": "value",
+      "target": "--env-file"
+    },
+    "--gpus": {
+      "kind": "value",
+      "target": "--gpus"
+    },
+    "--health-cmd": {
+      "kind": "value",
+      "target": "--health-cmd"
+    },
+    "--health-interval": {
+      "kind": "value",
+      "target": "--health-interval"
+    },
+    "--health-retries": {
+      "kind": "value",
+      "target": "--health-retries"
+    },
+    "--health-start-period": {
+      "kind": "value",
+      "target": "--health-start-period"
+    },
+    "--health-timeout": {
+      "kind": "value",
+      "target": "--health-timeout"
+    },
+    "--hostname": {
+      "kind": "value",
+      "target": "--hostname"
+    },
+    "-h": {
+      "kind": "value",
+      "target": "--hostname"
+    },
+    "--interactive": {
+      "kind": "flag",
+      "target": "--interactive"
+    },
+    "-i": {
+      "kind": "flag",
+      "target": "--interactive"
+    },
+    "--ip": {
+      "kind": "value",
+      "target": "--ip"
+    },
+    "--label": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "-l": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "--memory": {
+      "kind": "value",
+      "target": "--memory"
+    },
+    "-m": {
+      "kind": "value",
+      "target": "--memory"
+    },
+    "--mount": {
+      "kind": "value",
+      "target": "--mount"
+    },
+    "--name": {
+      "kind": "value",
+      "target": "--name"
+    },
+    "--network": {
+      "kind": "value",
+      "target": "--network"
+    },
+    "--network-alias": {
+      "kind": "value",
+      "target": "--network-alias"
+    },
+    "--no-healthcheck": {
+      "kind": "flag",
+      "target": "--no-healthcheck"
+    },
+    "--publish": {
+      "kind": "value",
+      "target": "--publish"
+    },
+    "-p": {
+      "kind": "value",
+      "target": "--publish"
+    },
+    "--publish-all": {
+      "kind": "flag",
+      "target": "--publish-all"
+    },
+    "-P": {
+      "kind": "flag",
+      "target": "--publish-all"
+    },
+    "--pull": {
+      "kind": "value",
+      "target": "--pull"
+    },
+    "--rm": {
+      "kind": "flag",
+      "target": "--rm"
+    },
+    "--shm-size": {
+      "kind": "value",
+      "target": "--shm-size"
+    },
+    "--stop-signal": {
+      "kind": "value",
+      "target": "--stop-signal"
+    },
+    "--stop-timeout": {
+      "kind": "value",
+      "target": "--stop-timeout"
+    },
+    "--tmpfs": {
+      "kind": "value",
+      "target": "--tmpfs"
+    },
+    "--tty": {
+      "kind": "flag",
+      "target": "--tty"
+    },
+    "-t": {
+      "kind": "flag",
+      "target": "--tty"
+    },
+    "--ulimit": {
+      "kind": "value",
+      "target": "--ulimit"
+    },
+    "--user": {
+      "kind": "value",
+      "target": "--user"
+    },
+    "-u": {
+      "kind": "value",
+      "target": "--user"
+    },
+    "--volume": {
+      "kind": "value",
+      "target": "--volume"
+    },
+    "-v": {
+      "kind": "value",
+      "target": "--volume"
+    },
+    "--workdir": {
+      "kind": "value",
+      "target": "--workdir"
+    },
+    "-w": {
+      "kind": "value",
+      "target": "--workdir"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image inspect": {
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container start": {
+    "--attach": {
+      "kind": "flag",
+      "target": "--attach"
+    },
+    "-a": {
+      "kind": "flag",
+      "target": "--attach"
+    },
+    "--interactive": {
+      "kind": "flag",
+      "target": "--interactive"
+    },
+    "-i": {
+      "kind": "flag",
+      "target": "--interactive"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container restart": {
+    "--signal": {
+      "kind": "value",
+      "target": "--signal"
+    },
+    "-s": {
+      "kind": "value",
+      "target": "--signal"
+    },
+    "--timeout": {
+      "kind": "value",
+      "target": "--timeout"
+    },
+    "-t": {
+      "kind": "value",
+      "target": "--timeout"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "network disconnect": {
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container create": {
+    "--cidfile": {
+      "kind": "value",
+      "target": "--cidfile"
+    },
+    "--cpus": {
+      "kind": "value",
+      "target": "--cpus"
+    },
+    "--dns": {
+      "kind": "value",
+      "target": "--dns"
+    },
+    "--dns-option": {
+      "kind": "value",
+      "target": "--dns-option"
+    },
+    "--dns-search": {
+      "kind": "value",
+      "target": "--dns-search"
+    },
+    "--domainname": {
+      "kind": "value",
+      "target": "--domainname"
+    },
+    "--entrypoint": {
+      "kind": "value",
+      "target": "--entrypoint"
+    },
+    "--env": {
+      "kind": "value",
+      "target": "--env"
+    },
+    "-e": {
+      "kind": "value",
+      "target": "--env"
+    },
+    "--env-file": {
+      "kind": "value",
+      "target": "--env-file"
+    },
+    "--gpus": {
+      "kind": "value",
+      "target": "--gpus"
+    },
+    "--health-cmd": {
+      "kind": "value",
+      "target": "--health-cmd"
+    },
+    "--health-interval": {
+      "kind": "value",
+      "target": "--health-interval"
+    },
+    "--health-retries": {
+      "kind": "value",
+      "target": "--health-retries"
+    },
+    "--health-start-period": {
+      "kind": "value",
+      "target": "--health-start-period"
+    },
+    "--health-timeout": {
+      "kind": "value",
+      "target": "--health-timeout"
+    },
+    "--hostname": {
+      "kind": "value",
+      "target": "--hostname"
+    },
+    "-h": {
+      "kind": "value",
+      "target": "--hostname"
+    },
+    "--interactive": {
+      "kind": "flag",
+      "target": "--interactive"
+    },
+    "-i": {
+      "kind": "flag",
+      "target": "--interactive"
+    },
+    "--ip": {
+      "kind": "value",
+      "target": "--ip"
+    },
+    "--label": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "-l": {
+      "kind": "value",
+      "target": "--label"
+    },
+    "--memory": {
+      "kind": "value",
+      "target": "--memory"
+    },
+    "-m": {
+      "kind": "value",
+      "target": "--memory"
+    },
+    "--mount": {
+      "kind": "value",
+      "target": "--mount"
+    },
+    "--name": {
+      "kind": "value",
+      "target": "--name"
+    },
+    "--network": {
+      "kind": "value",
+      "target": "--network"
+    },
+    "--network-alias": {
+      "kind": "value",
+      "target": "--network-alias"
+    },
+    "--no-healthcheck": {
+      "kind": "flag",
+      "target": "--no-healthcheck"
+    },
+    "--publish": {
+      "kind": "value",
+      "target": "--publish"
+    },
+    "-p": {
+      "kind": "value",
+      "target": "--publish"
+    },
+    "--publish-all": {
+      "kind": "flag",
+      "target": "--publish-all"
+    },
+    "-P": {
+      "kind": "flag",
+      "target": "--publish-all"
+    },
+    "--pull": {
+      "kind": "value",
+      "target": "--pull"
+    },
+    "--rm": {
+      "kind": "flag",
+      "target": "--rm"
+    },
+    "--shm-size": {
+      "kind": "value",
+      "target": "--shm-size"
+    },
+    "--stop-signal": {
+      "kind": "value",
+      "target": "--stop-signal"
+    },
+    "--stop-timeout": {
+      "kind": "value",
+      "target": "--stop-timeout"
+    },
+    "--tmpfs": {
+      "kind": "value",
+      "target": "--tmpfs"
+    },
+    "--tty": {
+      "kind": "flag",
+      "target": "--tty"
+    },
+    "-t": {
+      "kind": "flag",
+      "target": "--tty"
+    },
+    "--ulimit": {
+      "kind": "value",
+      "target": "--ulimit"
+    },
+    "--user": {
+      "kind": "value",
+      "target": "--user"
+    },
+    "-u": {
+      "kind": "value",
+      "target": "--user"
+    },
+    "--volume": {
+      "kind": "value",
+      "target": "--volume"
+    },
+    "-v": {
+      "kind": "value",
+      "target": "--volume"
+    },
+    "--workdir": {
+      "kind": "value",
+      "target": "--workdir"
+    },
+    "-w": {
+      "kind": "value",
+      "target": "--workdir"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "network connect": {
+    "--driver-opt": {
+      "kind": "value",
+      "target": "--driver-opt"
+    },
+    "--ip": {
+      "kind": "value",
+      "target": "--ip"
+    },
+    "--link": {
+      "kind": "value",
+      "target": "--link"
+    },
+    "--link-local-ip": {
+      "kind": "value",
+      "target": "--link-local-ip"
+    },
+    "--network-alias": {
+      "kind": "value",
+      "target": "--network-alias"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "image save": {
+    "--output": {
+      "kind": "value",
+      "target": "--output"
+    },
+    "-o": {
+      "kind": "value",
+      "target": "--output"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "inspect": {
+    "--type": {
+      "kind": "value",
+      "target": "--type"
+    },
+    "-t": {
+      "kind": "value",
+      "target": "--type"
+    },
+    "--size": {
+      "kind": "flag",
+      "target": "--size"
+    },
+    "-s": {
+      "kind": "flag",
+      "target": "--size"
+    },
+    "--format": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "-f": {
+      "kind": "value",
+      "target": "--format"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  },
+  "container prune": {
+    "--filter": {
+      "kind": "value",
+      "target": "--filter"
+    },
+    "-f": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--force": {
+      "kind": "flag",
+      "target": "--force"
+    },
+    "--help": {
+      "kind": "flag",
+      "target": "--help"
+    }
+  }
+}
