@@ -24,7 +24,7 @@ jobs:
         run: scripts/test.sh
       - name: Build .deb
         run: |
-          version="0.1.${GITHUB_RUN_NUMBER}"
+          version="0.2.${GITHUB_RUN_NUMBER}"
           if [[ "${GITHUB_REF_TYPE:-}" == "tag" ]]; then
             version="${GITHUB_REF_NAME#v}"
           fi
@@ -38,6 +38,8 @@ jobs:
           test -x /tmp/wslc-docker-package/usr/lib/wslc-docker/bin/wslc-compose
           PYTHONPATH=/tmp/wslc-docker-package/usr/lib/wslc-docker/vendor/wslc-compose/src \
             python3 -c 'import wslc_compose; assert wslc_compose.__version__ == "0.2.1"'
+      - name: Test package installation, commands, conflicts and removal
+        run: sudo python3 scripts/test-deb.py dist/wslc-docker_*.deb
       - name: Upload .deb and checksum
         uses: actions/upload-artifact@v4
         with:

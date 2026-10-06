@@ -2,7 +2,7 @@
 set -euo pipefail
 
 repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
-version="${1:-0.1.0}"
+version="${1:-0.2.0}"
 if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+([+~.-][A-Za-z0-9.+~:-]+)?$ ]]; then
     echo "Invalid Debian package version: $version" >&2
     exit 2
@@ -31,6 +31,9 @@ install -m 644 "$repo_root/README.md" "$stage/usr/share/doc/wslc-docker/README.m
 install -m 644 "$repo_root/README.ja.md" "$stage/usr/share/doc/wslc-docker/README.ja.md"
 install -m 644 "$repo_root/UPSTREAM.md" "$stage/usr/share/doc/wslc-docker/UPSTREAM.md"
 install -m 644 "$repo_root/debian/copyright" "$stage/usr/share/doc/wslc-docker/copyright"
+ln -s ../lib/wslc-docker/bin/docker "$stage/usr/bin/docker"
+ln -s ../lib/wslc-docker/bin/docker-compose "$stage/usr/bin/docker-compose"
+ln -s ../lib/wslc-docker/bin/docker-wslc "$stage/usr/bin/docker-wslc"
 ln -s ../lib/wslc-docker/bin/docker-wslc "$stage/usr/bin/wslc-docker"
 ln -s ../lib/wslc-docker/bin/wslc-compose "$stage/usr/bin/wslc-compose"
 
@@ -42,6 +45,7 @@ Priority: optional
 Architecture: all
 Maintainer: Hidekatsu Iizuno <1091860+hidekatsu-izuno@users.noreply.github.com>
 Depends: python3 (>= 3.9), python3-yaml
+Conflicts: docker.io, docker-cli, docker-ce-cli, podman-docker, moby-cli, docker-compose
 Description: Docker CLI adapter and Compose support for WSL containers
  Docker-style CLI wrappers route common docker commands to Microsoft's wslc
  container CLI. Includes the wslc-compose service orchestrator.

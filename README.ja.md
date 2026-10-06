@@ -1,44 +1,30 @@
-# wslc-docker-compat 0.1.0
+# wslc-docker
 
 WSLのUbuntuから `docker` コマンドでWindowsの `wslc.exe` を呼ぶスクリプト群です。
-Bashの導入スクリプトと、Python標準ライブラリだけで動くCLI変換処理を同梱しています。
+Docker CLI変換処理と、PyYAMLを使うCompose実装を同梱しています。
 
 **主要Docker CLI操作の互換ラッパーです。Docker Engine APIやDocker全機能の完全互換実装ではありません。**
 出力のJSON項目・テーブル表示や各機能の挙動はwslcに依存します。
 
 ## 導入
 
-必要環境はWindowsのWSLコンテナー機能、WSL内のUbuntu、Bash、Python 3.9以上、`wslpath` です。
-Pythonパッケージの追加インストールは不要です。
+Windows側でWSLコンテナー機能と `wslc.exe` が動作するUbuntu/WSL環境が必要です。Python 3とPyYAMLはdebの依存関係としてaptがインストールします。
 
-WindowsのPowerShellでwslcが使えることを確認します。
-
-```powershell
-wsl --update
-wslc version
-wslc run --rm hello-world
-```
-
-UbuntuでZIPを展開し、実行します。
+[GitHub Actions](https://github.com/hidekatsu-izuno/wslc-docker/actions) の成功したビルドから **Artifacts** のZIPをダウンロードし、展開したdebをUbuntu内でインストールします。
 
 ```bash
-unzip wslc-docker-compat-0.1.0.zip
-cd wslc-docker-compat
-bash install.sh
-export PATH="$HOME/.local/bin:$PATH"
-hash -r
-docker-wslc doctor
+sudo apt install ./wslc-docker_*.deb
 docker run --rm hello-world
+docker compose -f compose.yaml up -d
 ```
 
-継続利用する場合は `export PATH="$HOME/.local/bin:$PATH"` を `~/.bashrc` に追加してください。
-以前 `alias docker=...` を設定している場合は `unalias docker` し、`.bashrc` の該当定義も削除します。
-`type -a docker` でこのラッパーが選択されているか確認できます。
+インストールすると `/usr/bin/docker` と `/usr/bin/docker-compose` がwslc向けラッパーになります。PATHの変更、手動でのシンボリックリンク作成は不要です。`docker-wslc`、`wslc-docker`、`wslc-compose` も `/usr/bin` に登録されます。
 
-導入先は `~/.local/share/wslc-docker-compat`、コマンドは `~/.local/bin` 内のシンボリックリンクです。
-`/usr/bin/docker` など既存の実行ファイルは変更しません。
-導入先の `~/.local/bin/docker` などに別のファイルがある場合は、上書きせず終了します。
-`bash install.sh --prefix "$HOME/.local/wslc-compat"` で別の導入先を選べます。
+既存のDocker CLIを持つ `docker.io`、`docker-cli`、`docker-ce-cli`、`podman-docker`、`moby-cli`、`docker-compose` とはパッケージの `Conflicts` で競合を宣言しています。該当パッケージが入っている場合、aptはそのパッケージと依存するパッケージの削除を提案します。aptが表示する削除対象を確認してインストールしてください。
+
+通常はPATH上の `wslc.exe` または `/mnt/c/Program Files/WSL/wslc.exe` を自動検出します。カスタム配置の場合は `WSLC_DOCKER_BIN` と `WSLC_COMPOSE_BIN` を指定してください。
+
+以前の手順で `alias docker=...` や `~/.local/bin/docker` を作成した場合、その設定が `/usr/bin/docker` より優先されることがあります。debへ切り替える際に以前の設定を一度削除してください。以前 `install.sh` を使って導入した場合は、そのソースディレクトリーで `bash uninstall.sh` を実行してからdebをインストールしてください。
 
 ## 使用例
 
@@ -98,7 +84,7 @@ docker-wslc dry-run run --rm -v "$PWD:/work:ro" alpine:3.22 ls /work
 | `stop` / `restart` の `--time` / `--timeout` | wslcの各サブコマンドに対応するオプション名へ変換 |
 | `--format '{{.Field}}'` | wslcのJSON出力を読み、単純なフィールド参照を表示 |
 | 標準入出力・TTY・終了コード | 通常はexecでwslcへ置換。アーカイブ入力とテンプレート処理は子プロセス経由 |
-| `compose` / `docker-compose` | 別途用意したWSLC用Composeバックエンドへ引数を渡す |
+| `compose` / `docker-compose` | 同梱のwslc-composeへ引数を渡す |
 
 `network`、`volume`、`image`、`container` の対応するサブコマンドも使えます。
 完全なコマンドと受け付けるオプション名は `docker-wslc capabilities` で表示します。
@@ -138,9 +124,9 @@ docker compose -f examples/compose.yaml ps
 docker compose -f examples/compose.yaml down
 ```
 
-`WSLC_COMPOSE_BIN` が未指定の場合、同梱Composeは `wslc` をPATHから検索します。wslcの実行ファイルがPATH上にない場合は `WSLC_COMPOSE_BIN` で指定してください。Compose仕様の対応範囲や各機能の挙動は同梱実装のREADMEにも記載されています。
+`WSLC_COMPOSE_BIN` が未指定の場合、同梱ComposeはPATH上の `wslc.exe` / `wslc` と標準のWindowsインストール先を自動検出します。カスタム配置の場合は `WSLC_COMPOSE_BIN` で指定してください。Compose仕様の対応範囲や各機能の挙動は同梱実装のREADMEにも記載されています。
 
-Debianパッケージでは `wslc-compose` を `/usr/bin` に登録します。`docker` と `docker-compose` は既存のDockerコマンドと競合しないよう `/usr/lib/wslc-docker/bin/` に置きます。必要なら利用者が `~/.local/bin` にシンボリックリンクを作り、PATHの優先順位を設定してください（上の英語READMEに例があります）。
+Debianパッケージのインストールだけで `docker compose`、`docker-compose`、`wslc-compose` を利用できます。
 
 ## 互換範囲の境界
 
@@ -184,7 +170,7 @@ bash scripts/test.sh
 bash scripts/smoke-test.sh
 ```
 
-この配布物はLinux上でモックを使った44テストに合格しています。
+ラッパーのテストに加え、同梱Composeの上流テストとdebのインストール・コマンド登録・競合・アップグレード・削除をGitHub Actionsで検証します。
 テスト対象には空白・日本語・引用符を含む引数、バイナリ入出力、終了コード、環境変数優先順位、
 stdinのアーカイブ処理、Composeへの転送、インストール・再インストール・削除を含みます。
 **作成環境にはWindows/WSL/wslc実機がないため、実機テストは未実施です。**
@@ -195,14 +181,23 @@ stdinのアーカイブ処理、Composeへの転送、インストール・再�
 ## 削除
 
 ```bash
-bash uninstall.sh
-# 導入時にprefixを変更した場合は同じ値を指定
-bash uninstall.sh --prefix "$HOME/.local/wslc-compat"
-hash -r
+sudo apt remove wslc-docker
 ```
 
-このパッケージのコマンドとファイルだけを削除します。WSL、イメージ、コンテナー、ボリューム、
-認証情報、Composeバックエンドは削除しません。
+apt/dpkgがパッケージ本体と `/usr/bin` のコマンドリンクを削除します。Windows側のWSL、イメージ、コンテナー、ボリューム、認証情報は削除しません。
+
+## ソースからのユーザー単位インストール（任意）
+
+debを使わずに、利用者のホームディレクトリーだけに導入したい場合に使います。こちらはPython 3とPyYAMLを事前に用意し、PATHを設定する必要があります。
+
+```bash
+bash install.sh
+export PATH="$HOME/.local/bin:$PATH"
+# この方法で導入したものを削除
+bash uninstall.sh
+```
+
+導入先は `~/.local/share/wslc-docker`、コマンドは `~/.local/bin` です。`--prefix` で変更できます。既存の同名コマンドは上書きせずに終了します。
 
 ## 構成
 

@@ -12,7 +12,7 @@ import subprocess
 import sys
 import tempfile
 
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = json.loads((Path(__file__).with_name('options.json')).read_text())
 ALIASES = {
@@ -29,7 +29,7 @@ FORWARD = {'container run', 'container create', 'container exec'}
 WIN_PATH = re.compile(r'^(?:[A-Za-z]:[\\/]|\\\\|//)')
 FIELD = r'\.(?:[A-Za-z_][A-Za-z_0-9]*)(?:\.[A-Za-z_][A-Za-z_0-9]*)*'
 TEMPLATE = re.compile(r'{{\s*(?:(json)\s+)?(' + FIELD + r')\s*}}')
-HELP = '''wslc-docker-compat 0.1.0 — Docker CLI subset for Ubuntu on WSL
+HELP = '''wslc-docker-compat 0.2.0 — Docker CLI subset for Ubuntu on WSL
 
 Usage: docker COMMAND [OPTIONS]
 Commands: run create exec ps images build pull push tag start stop restart rm rmi

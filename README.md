@@ -9,22 +9,24 @@ This is a command-line compatibility layer, not a Docker Engine implementation. 
 Download the `.deb` from the latest successful workflow run's **Artifacts** section, then install it in Ubuntu on WSL:
 
 ```bash
-sudo apt install ./wslc-docker_0.1.*_all.deb
-wslc-compose --version
+sudo apt install ./wslc-docker_*.deb
+docker run --rm hello-world
+docker compose -f compose.yaml up -d
 ```
 
-The package installs `wslc-docker` and `wslc-compose` in `/usr/bin`. It keeps `docker` and `docker-compose` under `/usr/lib/wslc-docker/bin` so it does not replace an existing Docker installation. To opt in to these commands for your user:
+Installing the package registers `docker`, `docker-compose`, `docker-wslc`, `wslc-docker`, and `wslc-compose` in `/usr/bin`. No manual symlinks or PATH settings are needed. The implementation lives under `/usr/lib/wslc-docker/`; apt/dpkg owns and removes the command symlinks.
+
+Packages that also provide these Docker commands (`docker.io`, `docker-cli`, `docker-ce-cli`, `podman-docker`, `moby-cli`, and `docker-compose`) are declared as conflicts. When installing, apt will propose removing installed conflicting packages and any packages that depend on them. Review its package removal list before accepting.
+
+The Windows `wslc.exe` backend must already be available. The adapter and bundled Compose automatically search PATH and `/mnt/c/Program Files/WSL/wslc.exe`. Only custom installations need `WSLC_DOCKER_BIN` and `WSLC_COMPOSE_BIN` overrides. `wslc-compose` is bundled from [bacarndiaye/wslc-compose](https://github.com/bacarndiaye/wslc-compose) at the pinned revision in [UPSTREAM.md](UPSTREAM.md), with its MIT license included.
+
+If you created aliases or user-local Docker wrappers during an earlier installation, those can take precedence over `/usr/bin/docker`. Remove the earlier aliases/wrappers once when switching to the Debian package.
+
+To uninstall:
 
 ```bash
-mkdir -p "$HOME/.local/bin"
-ln -s /usr/lib/wslc-docker/bin/docker "$HOME/.local/bin/docker"
-ln -s /usr/lib/wslc-docker/bin/docker-compose "$HOME/.local/bin/docker-compose"
-export PATH="$HOME/.local/bin:$PATH"
-docker-wslc doctor
-docker compose version
+sudo apt remove wslc-docker
 ```
-
-Set `WSLC_COMPOSE_BIN` to the Windows `wslc.exe` path if it is not detected automatically. `wslc-compose` is bundled from [bacarndiaye/wslc-compose](https://github.com/bacarndiaye/wslc-compose) at the pinned revision in [UPSTREAM.md](UPSTREAM.md), and its MIT license is included in the package.
 
 ## Build and test locally
 
@@ -33,7 +35,7 @@ On Ubuntu or another Debian-based Linux with `dpkg-dev`, Python 3, PyYAML, and p
 ```bash
 sudo apt install dpkg-dev python3-yaml python3-pytest
 scripts/test.sh
-scripts/build-deb.sh 0.1.0
+scripts/build-deb.sh 0.2.0
 ```
 
 The package and SHA-256 checksum are written to `dist/`. GitHub Actions runs the same tests and package checks, then publishes the `.deb` and checksum as a workflow artifact.

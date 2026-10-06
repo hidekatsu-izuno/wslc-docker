@@ -309,7 +309,7 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr.decode())
         installed = self.prefix / 'bin' / 'docker-wslc'
         result = subprocess.run([str(installed), 'version'], capture_output=True)
-        self.assertEqual(result.stdout.strip(), b'0.1.0')
+        self.assertEqual(result.stdout.strip(), b'0.2.0')
         unrelated = self.prefix / 'bin' / 'my-tool'
         unrelated.write_text('keep')
         result = self.run_manage('install')
