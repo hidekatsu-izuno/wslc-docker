@@ -42,7 +42,9 @@ def manage():
         # Marker is written before copy so interrupted installations remain recognizable.
         marker.write_text(MARKER)
         shutil.copytree(source, dest, dirs_exist_ok=True,
-                        ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '.managed-install'))
+                        ignore=shutil.ignore_patterns(
+                            '.git', '.github', '.build', 'dist', '.pytest_cache',
+                            '__pycache__', '*.pyc', '.managed-install'))
         bin_dir.mkdir(parents=True, exist_ok=True)
         for name in NAMES:
             executable = dest / 'bin' / name

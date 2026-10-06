@@ -305,13 +305,15 @@ class InstallTests(unittest.TestCase):
         return subprocess.run([sys.executable, str(self.script), action, '--prefix', str(self.prefix)], capture_output=True)
 
     def test_install_reinstall_uninstall_and_preserve_unrelated_files(self):
-        self.assertEqual(self.run_manage('install').returncode, 0)
+        result = self.run_manage('install')
+        self.assertEqual(result.returncode, 0, result.stderr.decode())
         installed = self.prefix / 'bin' / 'docker-wslc'
         result = subprocess.run([str(installed), 'version'], capture_output=True)
         self.assertEqual(result.stdout.strip(), b'0.1.0')
         unrelated = self.prefix / 'bin' / 'my-tool'
         unrelated.write_text('keep')
-        self.assertEqual(self.run_manage('install').returncode, 0)
+        result = self.run_manage('install')
+        self.assertEqual(result.returncode, 0, result.stderr.decode())
         self.assertEqual(self.run_manage('uninstall').returncode, 0)
         self.assertFalse(os.path.lexists(installed))
         self.assertEqual(unrelated.read_text(), 'keep')
