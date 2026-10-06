@@ -1,4 +1,4 @@
-name: Test and build Debian package
+name: Test, build and release Debian package
 
 on:
   push:
@@ -13,6 +13,8 @@ permissions:
 jobs:
   test-and-package:
     runs-on: ubuntu-24.04
+    outputs:
+      version: ${{ steps.package.outputs.version }}
     steps:
       - name: Check out source
         uses: actions/checkout@v4
@@ -23,12 +25,14 @@ jobs:
       - name: Run adapter and vendored Compose tests
         run: scripts/test.sh
       - name: Build .deb
+        id: package
         run: |
           version="0.2.${GITHUB_RUN_NUMBER}"
           if [[ "${GITHUB_REF_TYPE:-}" == "tag" ]]; then
             version="${GITHUB_REF_NAME#v}"
           fi
           scripts/build-deb.sh "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
       - name: Validate package metadata and payload
         run: |
           dpkg-deb --info dist/wslc-docker_*.deb
@@ -43,7 +47,39 @@ jobs:
       - name: Upload .deb and checksum
         uses: actions/upload-artifact@v4
         with:
-          name: wslc-docker-deb-${{ github.ref_name }}
+          name: wslc-docker-deb-${{ github.run_id }}
           path: dist/wslc-docker_*.deb*
           if-no-files-found: error
           retention-days: 30
+
+  publish-release:
+    needs: test-and-package
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Download tested .deb and checksum
+        uses: actions/download-artifact@v4
+        with:
+          name: wslc-docker-deb-${{ github.run_id }}
+          path: dist
+      - name: Verify checksum
+        working-directory: dist
+        run: sha256sum -c wslc-docker_*.deb.sha256
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGE_VERSION: ${{ needs.test-and-package.outputs.version }}
+        run: |
+          release_tag="v${PACKAGE_VERSION}"
+          printf 'Debian package with docker and docker compose commands for wslc.\n\nInstall:\n```bash\nsudo apt install ./wslc-docker_%s_all.deb\n```\n\nThe Windows wslc.exe backend must already be installed.\n' "$PACKAGE_VERSION" > release-notes.md
+          if gh release view "$release_tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$release_tag" dist/*.deb dist/*.deb.sha256 \
+              --repo "$GITHUB_REPOSITORY" --clobber
+            gh release edit "$release_tag" --repo "$GITHUB_REPOSITORY" --draft=false
+          else
+            gh release create "$release_tag" dist/*.deb dist/*.deb.sha256 \
+              --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+              --title "wslc-docker ${PACKAGE_VERSION}" --notes-file release-notes.md
+          fi

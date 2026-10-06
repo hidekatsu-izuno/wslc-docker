@@ -6,7 +6,7 @@ This is a command-line compatibility layer, not a Docker Engine implementation. 
 
 ## Install the Debian package
 
-Download the `.deb` from the latest successful workflow run's **Artifacts** section, then install it in Ubuntu on WSL:
+Download the `.deb` from [the latest GitHub Release](https://github.com/hidekatsu-izuno/wslc-docker/releases/latest), then install it in Ubuntu on WSL:
 
 ```bash
 sudo apt install ./wslc-docker_*.deb
@@ -38,7 +38,7 @@ scripts/test.sh
 scripts/build-deb.sh 0.2.0
 ```
 
-The package and SHA-256 checksum are written to `dist/`. GitHub Actions runs the same tests and package checks, then publishes the `.deb` and checksum as a workflow artifact.
+Local builds write the package and SHA-256 checksum to `dist/`. GitHub Actions runs the adapter, Compose and isolated package installation tests, then publishes the `.deb` and checksum to GitHub Releases on successful main-branch or `v*` tag builds. Pull requests run the tests without publishing a Release.
 
 ## License
 

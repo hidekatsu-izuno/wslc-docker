@@ -10,7 +10,7 @@ Docker CLI変換処理と、PyYAMLを使うCompose実装を同梱しています
 
 Windows側でWSLコンテナー機能と `wslc.exe` が動作するUbuntu/WSL環境が必要です。Python 3とPyYAMLはdebの依存関係としてaptがインストールします。
 
-[GitHub Actions](https://github.com/hidekatsu-izuno/wslc-docker/actions) の成功したビルドから **Artifacts** のZIPをダウンロードし、展開したdebをUbuntu内でインストールします。
+[最新のGitHub Release](https://github.com/hidekatsu-izuno/wslc-docker/releases/latest) の **Assets** から `.deb` をダウンロードし、Ubuntu内でインストールします。
 
 ```bash
 sudo apt install ./wslc-docker_*.deb
@@ -19,6 +19,8 @@ docker compose -f compose.yaml up -d
 ```
 
 インストールすると `/usr/bin/docker` と `/usr/bin/docker-compose` がwslc向けラッパーになります。PATHの変更、手動でのシンボリックリンク作成は不要です。`docker-wslc`、`wslc-docker`、`wslc-compose` も `/usr/bin` に登録されます。
+
+mainへのpushと `v*` タグの成功したビルドは、debとSHA-256ファイルをGitHub Releasesへ自動公開します。Pull Requestではテストだけを実行し、Releaseは公開しません。
 
 既存のDocker CLIを持つ `docker.io`、`docker-cli`、`docker-ce-cli`、`podman-docker`、`moby-cli`、`docker-compose` とはパッケージの `Conflicts` で競合を宣言しています。該当パッケージが入っている場合、aptはそのパッケージと依存するパッケージの削除を提案します。aptが表示する削除対象を確認してインストールしてください。
 
